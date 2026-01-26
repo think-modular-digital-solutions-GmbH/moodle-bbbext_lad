@@ -17,10 +17,10 @@
 /**
  * This file contains the version information for the BBB Learning Analytics Dashboard extension.
  *
- * @package   bbbext_lad
- * @copyright 2023 onwards, Blindside Networks Inc
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @author    Laurent David  (laurent [at] call-learning [dt] fr)
+ * @package    bbbext_lad
+ * @copyright  2026, think modular
+ * @author     think modular (stefan.weber@think-modular.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
 

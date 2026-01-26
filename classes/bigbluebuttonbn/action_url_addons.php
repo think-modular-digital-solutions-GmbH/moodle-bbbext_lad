@@ -13,15 +13,16 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 namespace bbbext_lad\bigbluebuttonbn;
 
 /**
  * A single action class to mutate the action URL.
  *
- * @package   bbbext_lad
- * @copyright 2023 onwards, Blindside Networks Inc
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- * @author    Laurent David (laurent@call-learning.fr)
+ * @package    bbbext_lad
+ * @copyright  2026, think modular
+ * @author     think modular (stefan.weber@think-modular.com)
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class action_url_addons extends \mod_bigbluebuttonbn\local\extension\action_url_addons {
     /**
@@ -41,11 +42,11 @@ class action_url_addons extends \mod_bigbluebuttonbn\local\extension\action_url_
         ?int $instanceid = null
     ): array {
         if ($instanceid && $action == 'create') {
-            $callback_url = new \moodle_url('/local/bbb_lad/callback.php', [
+            $url = new \moodle_url('/local/bbb_lad/callback.php', [
                 'instanceid' => $instanceid,
             ]);
-            $callback_url = $callback_url->out(false);
-            $metadata['analytics-callback-url'] = $callback_url;
+            $url = $url->out(false);
+            $metadata['analytics-callback-url'] = $url;
         }
 
         return [
