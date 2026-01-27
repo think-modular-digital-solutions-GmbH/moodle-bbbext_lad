@@ -58,16 +58,19 @@ class mod_instance_helper extends \mod_bigbluebuttonbn\local\extension\mod_insta
         global $DB, $PAGE;
         $enabled = $bigbluebuttonbn->lad_enable ?? 0;
         $instanceid = $PAGE->cm->instance;
+        $secret = uniqid();
 
         // Get existing config.
         if ($record = $DB->get_record('bbbext_lad', ['bigbluebuttonbnid' => $instanceid])) {
             $record->enabled = $enabled;
+            $record->secret = $secret;
             $DB->update_record('bbbext_lad', $record);
         } else {
             // Create new config.
             $record = new stdClass();
             $record->bigbluebuttonbnid = $instanceid;
             $record->enabled = $enabled;
+            $record->secret = $secret;
             $DB->insert_record('bbbext_lad', $record);
         }
     }

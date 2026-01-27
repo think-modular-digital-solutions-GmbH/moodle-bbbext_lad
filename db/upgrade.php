@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * This file contains the version information for the BBB Learning Analytics Dashboard extension.
+ * Upgrade logic for the BigBlueButtonBN module LAD extension.
  *
  * @package    bbbext_lad
  * @copyright  2026, think modular
@@ -23,13 +23,38 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+/**
+ * Performs data migrations and updates on upgrade.
+ *
+ * @param int $oldversion
+ * @return bool
+ */
+function xmldb_bbbext_lad_upgrade($oldversion) {
+    global $DB;
+    $dbman = $DB->get_manager();
 
-$plugin->version      = 2026012703;
-$plugin->release      = '1.0.1';
-$plugin->requires     = 2023020300;
-$plugin->component    = 'bbbext_lad';
-$plugin->supports     = [404, 502];
-$plugin->dependencies = [
-    'mod_bigbluebuttonbn' => 2023020300,
-];
+    if ($oldversion < 2026012702) {
+        $table = new xmldb_table('bbbext_lad');
+
+        $field = new xmldb_field(
+            'secret',
+            XMLDB_TYPE_CHAR,
+            '255',
+            null,
+            null,
+            null,
+            null,
+            'bigbluebuttonbnid'
+        );
+
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        upgrade_plugin_savepoint(true, 2026012702, 'bbbext', 'lad');
+    }
+
+    return true;
+
+}
+

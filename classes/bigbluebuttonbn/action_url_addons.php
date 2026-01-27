@@ -58,6 +58,7 @@ class action_url_addons extends \mod_bigbluebuttonbn\local\extension\action_url_
             if ($record && $record->enabled == 1) {
                 $url = new \moodle_url('/local/bbb_lad/callback.php', [
                     'instanceid' => $instanceid,
+                    'secret' => $record->secret,
                 ]);
                 $url = $url->out(false);
                 $metadata['analytics-callback-url'] = $url;
