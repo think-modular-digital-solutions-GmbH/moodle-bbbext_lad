@@ -50,11 +50,18 @@ class action_url_addons extends \mod_bigbluebuttonbn\local\extension\action_url_
         ?int $instanceid = null
     ): array {
         if ($instanceid && $action == 'create') {
-            $url = new \moodle_url('/local/bbb_lad/callback.php', [
-                'instanceid' => $instanceid,
-            ]);
-            $url = $url->out(false);
-            $metadata['analytics-callback-url'] = $url;
+
+            // Check if enabled.
+            global $DB;
+
+            $record = $DB->get_record('bbbext_lad', ['bigbluebuttonbnid' => $instanceid]);
+            if ($record && $record->enabled == 1) {
+                $url = new \moodle_url('/local/bbb_lad/callback.php', [
+                    'instanceid' => $instanceid,
+                ]);
+                $url = $url->out(false);
+                $metadata['analytics-callback-url'] = $url;
+            }
         }
 
         return [
