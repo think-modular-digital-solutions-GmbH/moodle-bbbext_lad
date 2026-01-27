@@ -22,13 +22,13 @@
  * @author     think modular (stefan.weber@think-modular.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version      = 2026012601;
+$plugin->version      = 2026012701;
 $plugin->requires     = 2023020300;
 $plugin->component    = 'bbbext_lad';
 $plugin->supports     = [404, 502];
 $plugin->dependencies = [
     'mod_bigbluebuttonbn' => 2023020300,
-    'local_bbb_lad' => 2026012601,
 ];

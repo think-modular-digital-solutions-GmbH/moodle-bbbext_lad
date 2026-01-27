@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Language File.
+ * This file contains the version information for the BBB Learning Analytics Dashboard extension.
  *
  * @package    bbbext_lad
  * @copyright  2026, think modular
@@ -23,10 +23,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+defined('MOODLE_INTERNAL') || die;
 
-$string['enable'] = 'Enable';
-$string['enable_desc'] = 'Enable/disable this plugin by default for new instances of the BigBlueButton activity.';
-$string['enable_help'] = 'Will receive data for the Learning Analytics Dashboard back from BigBlueButton after a meeting ended, which is then saved in Moodle and can be displayed by the teacher.';
-$string['pluginname'] = 'BigBlueButton Learning Analytics Dashboard extension';
-$string['privacy:metadata'] = 'The BigBlueButton Learning Analytics Dashboard extension plugin does not store any personal data.';
+$settings->add(new admin_setting_configcheckbox(
+    'bbbext_lad/enabled',
+    new lang_string('enable'),
+    new lang_string('enable_desc', 'bbbext_lad'),
+    0
+));
