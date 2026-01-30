@@ -43,9 +43,11 @@ class mod_instance_helper extends \mod_bigbluebuttonbn\local\extension\mod_insta
      **/
     public function add_instance(stdClass $bigbluebuttonbn) {
         global $DB;
+        $secret = uniqid();
         $DB->insert_record('bbbext_lad', (object) [
             'bigbluebuttonbnid' => $bigbluebuttonbn->id,
             'enabled' => $bigbluebuttonbn->lad_enable ?? 0,
+            'secret' => $secret,
         ]);
     }
 
