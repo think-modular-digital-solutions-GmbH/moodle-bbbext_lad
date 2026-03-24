@@ -29,7 +29,10 @@ use stdClass;
 use moodle_url;
 
 /**
- * A class for the main mod form extension
+ * Allows modules to modify the data returned by form get_data().
+ * This method is also called in the bulk activity completion form.
+ *
+ * Only available on moodleform_mod.
  *
  * @package    bbbext_lad
  * @copyright  2026, think modular
