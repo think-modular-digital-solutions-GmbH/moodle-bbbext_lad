@@ -53,7 +53,7 @@ class mod_instance_helper extends \mod_bigbluebuttonbn\local\extension\mod_insta
     public function update_instance(stdClass $bigbluebuttonbn): void {
         global $DB, $PAGE;
         $enabled = $bigbluebuttonbn->lad_enable ?? 0;
-        $instanceid = $PAGE->cm->instance;
+        $instanceid = $bigbluebuttonbn->instance;
         $secret = uniqid();
 
         // Get existing config.
@@ -91,3 +91,4 @@ class mod_instance_helper extends \mod_bigbluebuttonbn\local\extension\mod_insta
         return ['bbbext_lad'];
     }
 }
+
