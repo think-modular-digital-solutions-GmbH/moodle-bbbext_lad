@@ -4,6 +4,7 @@
 - This functionality needs two plugins: local_bbb_lad and bbbext_lad
 - It will collect learning analytics dashboard information from BigBlueButton via a callback
 - This information can be seen by teachers with the new menu entry "Learning Analytics Dashboard" in any BigBlueButton activity.
+- This menu entry will not be visible right away - it will a few seconds after the meeting to get the information from the BBB server.
 
 ## Installation
 - put the local_bbb_lad plugin into /local
