@@ -51,6 +51,26 @@ class mod_instance_helper extends \mod_bigbluebuttonbn\local\extension\mod_insta
      * @param stdClass $bigbluebuttonbn BigBlueButtonBN form data
      **/
     public function update_instance(stdClass $bigbluebuttonbn): void {
+        global $DB;
+        $enabled = $bigbluebuttonbn->lad_enable ?? 0;
+        $secret = uniqid();
+        $record = $DB->get_record('bbbext_lad', [
+            'bigbluebuttonbnid' => $bigbluebuttonbn->id,
+        ]);
+        // No settings yet.
+        if (empty($record)) {
+            $record = new stdClass();
+            $record->bigbluebuttonbnid = $bigbluebuttonbn->id;
+            $record->enabled = $enabled;
+            $record->secret = $secret;
+            $DB->insert_record('bbbext_lad', $record);
+        } else {
+            // Update settings.
+            $record->enabled = $enabled;
+            $record->secret = $secret;
+            $DB->update_record('bbbext_lad', $record);
+        }
+
         global $DB, $PAGE;
         $enabled = $bigbluebuttonbn->lad_enable ?? 0;
         $instanceid = $bigbluebuttonbn->instance;
